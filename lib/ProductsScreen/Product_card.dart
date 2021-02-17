@@ -1,4 +1,5 @@
 import 'package:example/CartScreen/cart_bloc.dart';
+import 'package:example/ProductsScreen/ActionSheet.dart';
 import 'package:example/ProductsScreen/Product_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,9 @@ import 'package:hive/hive.dart';
 class ProductCard extends StatefulWidget {
   final Product product;
   final bool isHided = true;
+  final void Function() callBack;
 
-  const ProductCard({Key key, this.product}) : super(key: key);
+  const ProductCard(this.product, {Key key, this.callBack}) : super(key: key);
 
   @override
   _ProductCardState createState() => _ProductCardState();
@@ -19,6 +21,8 @@ class _ProductCardState extends State<ProductCard> {
   Box box = Hive.box('Cart');
   CartBloc cartBloc;
   int count;
+
+
 
   @override
   void initState() {
@@ -36,180 +40,203 @@ class _ProductCardState extends State<ProductCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 343,
-      height: 102,
-      margin: EdgeInsets.only(left: 16, right: 16, top: 10),
-      decoration: BoxDecoration(
-          color: CupertinoColors.white, borderRadius: BorderRadius.circular(8)),
-      child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(3),
-            child: Image(
-              width: 100,
-              image: NetworkImage(
-                  "https://api.doover.tech${widget.product.picture}"),
-              fit: BoxFit.fill,
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.all(8),
-            width: 170,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  widget.product.name,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      'Срок чистки /',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    Text(
-                        '${Duration(seconds: widget.product.duration.toInt()).inDays}'
-                        ' дня')
-                  ],
-                ),
-
-
-                     Row(
-                      children: [
-                        CupertinoButton(
-                          child: Icon(
-                            CupertinoIcons.add_circled,
-                            color: CupertinoColors.black,
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+      child: Container(
+        height: 102,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          color: Color(0xFFFFFFFF),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Row(
+          children: [
+            Container(
+                width: 64,
+                height: 102,
+                child: Stack(
+                    alignment: Alignment.centerRight,
+                    children: [
+                      Positioned(
+                        left: 0,
+                        top: 0,
+                        child: widget.callBack != null ?  InkWell(
+                          borderRadius: BorderRadius.circular(8),
+                          onTap: () {
+                            showModalBottomSheet(
+                                barrierColor: Colors.black.withOpacity(0.5),
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return ActionSheet(widget.product);
+                                }
+                            );
+                          },
+                          child: Container(
+                            width: 24,
+                            height: 24,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFEDEFF6),
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(8.0),
+                                  topLeft: Radius.circular(8.0)),
+                            ),
+                            child: Center(
+                              child: Text(
+                                '?',
+                                style: TextStyle(color: Color(0xFF172853)),
+                              ),
+                            ),
                           ),
-                          onPressed: () {
+                        ) : Container(),
+                      ),
+                      Center(
+                        child: Image(
+                          height: 64,
+                          image: NetworkImage("https://api.doover.tech${widget.product.picture}"),
+                        ),
+                      ),
+                    ]
+                )
+            ),
+            SizedBox(width: 16,),
+            Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 16),
+                  Container(
+                    width: MediaQuery.of(context).size.width - 185,
+                    child: Text(
+                        widget.product.name,
+                        overflow: TextOverflow.ellipsis
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Row(
+                      children: [
+                        Text(
+                          'Срок чистки / ',
+                          style: TextStyle(color: Color(0xffB0B3BC)),
+                        ),
+                        Text(
+                            '${Duration(seconds: widget.product.duration.toInt()).inDays}'
+                                ' дня')
+                      ]
+                  ),
+                  SizedBox(height: 8),
+                  Container(
+                    child: Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
                             setState(() {
                               count++;
                               box.put(widget.product.id, widget.product..count = count);
+                              if (widget.callBack != null) widget.callBack();
                             });
                             cartBloc.add(AddProduct(widget.product..count = count));
                           },
-                          padding: EdgeInsets.all(1),
-                        ),
-                        Text('$count'),
-                        Offstage(
-                          offstage: count == 0,
-                          child: CupertinoButton(
-                            child: Icon(
-                              CupertinoIcons.minus_circle,
-                              color: CupertinoColors.black,
-                            ),
-                            onPressed: () {
-                              count != 1
-                                  ? setState(() {
-                                      count--;
-                                      box.put(widget.product.id, widget.product..count = count);
-                                    })
-                                  : box.delete(widget.product.id);
-                              cartBloc.add(RemoveProduct(widget.product));
-                            },
-                            padding: EdgeInsets.all(1),
+                          child: Icon(
+                            CupertinoIcons.add_circled,
+                            color: Color(0xFF172853),
                           ),
                         ),
+                        SizedBox(width: 12),
+                        Text('$count'),
+                        SizedBox(width: 12),
+                        count > 0 ? InkWell(
+                          onTap: () {
+                            count != 1
+                                ? setState(() {
+                              count--;
+                              box.put(widget.product.id, widget.product..count = count);
+                              if (widget.callBack != null) widget.callBack();
+                            })
+                                : box.delete(widget.product.id);
+                            cartBloc.add(RemoveProduct(widget.product));
+                          },
+                          child: Icon(
+                            CupertinoIcons.minus_circle,
+                            color: Color(0xFF172853),
+                          ),
+                        ) : Container(),
                       ],
                     ),
-              ],
+                  ),
+                ]
             ),
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Container(
-              width: 109,
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                      width: 24,
-                      height: 24,
-                      decoration: BoxDecoration(
-                          color: CupertinoColors.lightBackgroundGray,
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(8),
-                              bottomLeft: Radius.circular(8))),
-                      child: Center(
-                        child: GestureDetector(
-                          child: Text(
-                            '?',
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                          onTap: () {
-                            showCupertinoModalPopup(
-                              context: context,
-                              builder: (context) => Container(
-                                child: CupertinoActionSheet(
-                                  actions: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(16.0),
-                                          child: Text(
-                                            widget.product.hintTitle,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  CupertinoColors.systemGrey3,
-                                              borderRadius: BorderRadius.only(
-                                                  topRight: Radius.circular(5),
-                                                  bottomLeft:
-                                                      Radius.circular(5)),
-                                            ),
-                                            child: GestureDetector(
-                                              child: Icon(
-                                                Icons.clear,
-                                                color: Colors.black,
-                                              ),
-                                              onTap: () {
-                                                Navigator.pop(context);
-                                              },
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(16),
-                                      child:
-                                          Text(widget.product.hintDescription),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        ),
+            Spacer(),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                widget.callBack == null
+                    ? InkWell(
+                  borderRadius: BorderRadius.circular(8),
+                  onTap: () {
+                    showModalBottomSheet(
+                        barrierColor: Colors.black.withOpacity(0.5),
+                        context: context,
+                        builder: (BuildContext context) {
+                          return ActionSheet(widget.product);
+                        }
+                    );
+                  },
+                  child: Container(
+                    width: 24,
+                    height: 24,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEDEFF6),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(8.0),
+                          topRight: Radius.circular(8.0)),
+                    ),
+                    child: Center(
+                      child: Text(
+                        '?',
+                        style: TextStyle(color: Color(0xFFB0B3BC),
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 30,
+                ),
+                    ): InkWell(
+                      borderRadius: BorderRadius.circular(8),
+                      onTap: () {
+                        setState(() {
+                          box.delete(widget.product.id);
+                          cartBloc.add(RemoveProduct(widget.product));
+                          widget.callBack();
+                        });
+                      },
+                      child: Container(
+                        width: 24,
+                        height: 24,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFEDEFF6),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(8.0),
+                              topRight: Radius.circular(8.0)),
+                        ),
+                        child: Center(
+                          child: Icon(
+                            CupertinoIcons.clear,
+                            color: Color(0xFFB0B3BC),
+                            size: 18,
+                          ),
+                        ),
+                      ),
+                    ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 14, 16),
+                  child: Text(
+                    '${widget.product.price.toInt()} тг',
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  Text(
-                    '${widget.product.price.toInt()}' + ' тг',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

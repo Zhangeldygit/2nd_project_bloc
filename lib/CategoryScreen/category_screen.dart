@@ -137,7 +137,7 @@ class _CategoryScreenState extends State<CategoryScreen>
                   },
                   itemCount: state.products.length,
                   itemBuilder: (context, index) {
-                    return ProductCard(product: state.products[index]);
+                    return ProductCard( state.products[index]);
                   },
                 ),
               );

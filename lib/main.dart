@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
           )
         ],
         child: BlocBuilder<AuthBloc, AuthState>(
-          builder: (c, s) => CupertinoApp(
+          builder: (c, s) => MaterialApp(
             debugShowCheckedModeBanner: false,
             home: s is LoginState ? MainScreen() : LoginScreen(),
           ),

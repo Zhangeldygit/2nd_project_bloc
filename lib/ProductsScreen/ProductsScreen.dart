@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ProductsScreen extends StatefulWidget {
   final Category category;
 
+
   const ProductsScreen({Key key, this.category}) : super(key: key);
 
   @override
@@ -15,6 +16,7 @@ class ProductsScreen extends StatefulWidget {
 }
 
 class _ProductsScreenState extends State<ProductsScreen> {
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<CategoryBloc>(
@@ -63,7 +65,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     },
                     itemCount: state.products.length,
                     itemBuilder: (context, index) {
-                      return ProductCard(product: state.products[index]);
+                      return ProductCard( state.products[index]);
                     },
                   ),
                 );
