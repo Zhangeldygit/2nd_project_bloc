@@ -1,4 +1,5 @@
 import 'package:example/CategoryScreen/Category_model.dart';
+import 'package:example/Consts/textStyle_consts.dart';
 import 'package:example/ProductsScreen/ProductsScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class CategoryCard extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(16),
               child: Column(
-                children: [Text(category.name)],
+                children: [Text(category.name, style: AllTextStyles.CategoryTitleTextStyle)],
               ),
             ),
             Container(

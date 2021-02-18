@@ -35,7 +35,8 @@ class MyApp extends StatelessWidget {
           BlocProvider<CartBloc>(
             create: (_) => getIt<CartBloc>()..add(InitCart()),
             lazy: false,
-          )
+          ),
+
         ],
         child: BlocBuilder<AuthBloc, AuthState>(
           builder: (c, s) => MaterialApp(

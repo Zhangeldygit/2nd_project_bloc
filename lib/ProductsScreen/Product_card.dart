@@ -1,4 +1,6 @@
 import 'package:example/CartScreen/cart_bloc.dart';
+import 'package:example/Consts/color_consts.dart';
+import 'package:example/Consts/textStyle_consts.dart';
 import 'package:example/ProductsScreen/ActionSheet.dart';
 import 'package:example/ProductsScreen/Product_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -41,12 +43,13 @@ class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+      padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
       child: Container(
+
         height: 102,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          color: Color(0xFFFFFFFF),
+          color: AllColors.CardBackgroundColor,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
@@ -57,6 +60,16 @@ class _ProductCardState extends State<ProductCard> {
                 child: Stack(
                     alignment: Alignment.centerRight,
                     children: [
+                      Center(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.horizontal(left: Radius.circular(8)),
+                          child: Image(
+                            height: double.maxFinite,
+                            fit: BoxFit.fitHeight,
+                            image: NetworkImage("https://api.doover.tech${widget.product.picture}"),
+                          ),
+                        ),
+                      ),
                       Positioned(
                         left: 0,
                         top: 0,
@@ -75,7 +88,7 @@ class _ProductCardState extends State<ProductCard> {
                             width: 24,
                             height: 24,
                             decoration: BoxDecoration(
-                              color: Color(0xFFEDEFF6),
+                              color: AllColors.QuestionBackgroundColor,
                               borderRadius: BorderRadius.only(
                                   bottomRight: Radius.circular(8.0),
                                   topLeft: Radius.circular(8.0)),
@@ -83,17 +96,11 @@ class _ProductCardState extends State<ProductCard> {
                             child: Center(
                               child: Text(
                                 '?',
-                                style: TextStyle(color: Color(0xFF172853)),
+                                style: AllTextStyles.QuestionTextStyle,
                               ),
                             ),
                           ),
-                        ) : Container(),
-                      ),
-                      Center(
-                        child: Image(
-                          height: 64,
-                          image: NetworkImage("https://api.doover.tech${widget.product.picture}"),
-                        ),
+                        ) : Offstage(),
                       ),
                     ]
                 )
@@ -108,7 +115,8 @@ class _ProductCardState extends State<ProductCard> {
                     width: MediaQuery.of(context).size.width - 185,
                     child: Text(
                         widget.product.name,
-                        overflow: TextOverflow.ellipsis
+                        overflow: TextOverflow.ellipsis,
+                      style: AllTextStyles.ProductTitleTextStyle,
                     ),
                   ),
                   SizedBox(height: 8),
@@ -116,11 +124,12 @@ class _ProductCardState extends State<ProductCard> {
                       children: [
                         Text(
                           'Срок чистки / ',
-                          style: TextStyle(color: Color(0xffB0B3BC)),
+                          style: AllTextStyles.Day_TextStyle,
                         ),
                         Text(
                             '${Duration(seconds: widget.product.duration.toInt()).inDays}'
-                                ' дня')
+                                ' дня',
+                        style: AllTextStyles.Price_Day_TextStyle)
                       ]
                   ),
                   SizedBox(height: 8),
@@ -138,7 +147,7 @@ class _ProductCardState extends State<ProductCard> {
                           },
                           child: Icon(
                             CupertinoIcons.add_circled,
-                            color: Color(0xFF172853),
+                            color: AllColors.BottomNavBarSelectedItemColor,
                           ),
                         ),
                         SizedBox(width: 12),
@@ -157,7 +166,7 @@ class _ProductCardState extends State<ProductCard> {
                           },
                           child: Icon(
                             CupertinoIcons.minus_circle,
-                            color: Color(0xFF172853),
+                            color: AllColors.BottomNavBarSelectedItemColor,
                           ),
                         ) : Container(),
                       ],
@@ -186,7 +195,7 @@ class _ProductCardState extends State<ProductCard> {
                     width: 24,
                     height: 24,
                     decoration: BoxDecoration(
-                      color: Color(0xFFEDEFF6),
+                      color: AllColors.QuestionBackgroundColor,
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(8.0),
                           topRight: Radius.circular(8.0)),
@@ -194,8 +203,7 @@ class _ProductCardState extends State<ProductCard> {
                     child: Center(
                       child: Text(
                         '?',
-                        style: TextStyle(color: Color(0xFFB0B3BC),
-                      ),
+                        style: AllTextStyles.QuestionTextStyle,
                     ),
                   ),
                 ),
@@ -220,7 +228,7 @@ class _ProductCardState extends State<ProductCard> {
                         child: Center(
                           child: Icon(
                             CupertinoIcons.clear,
-                            color: Color(0xFFB0B3BC),
+                            color: AllColors.BottomNavBarItemColor,
                             size: 18,
                           ),
                         ),
@@ -231,6 +239,7 @@ class _ProductCardState extends State<ProductCard> {
                   child: Text(
                     '${widget.product.price.toInt()} тг',
                     overflow: TextOverflow.ellipsis,
+                    style: AllTextStyles.Price_Day_TextStyle,
                   ),
                 ),
               ],

@@ -29,6 +29,7 @@ void setUp() {
   getIt.registerFactory<ProductsDataSource>(() => ProductsDataSource(getIt()));
 
   getIt.registerFactory<CartBloc>(() => CartBloc());
+
 }
 
 const String API_URL = 'https://api.doover.tech/api/';

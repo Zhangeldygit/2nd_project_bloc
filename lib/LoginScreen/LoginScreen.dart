@@ -1,3 +1,5 @@
+import 'package:example/Consts/color_consts.dart';
+import 'package:example/Consts/textStyle_consts.dart';
 import 'package:example/LoginScreen/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,9 +18,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-
-      child: BlocBuilder<AuthBloc, AuthState>(
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          'Войти',
+          style: AllTextStyles.AppBarTextStyle
+        ),
+        brightness: Brightness.light,
+        backgroundColor: AllColors.CardBackgroundColor,
+         elevation: 0,
+      ),
+      body: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
           if (state is LoadingAuthState) {
             return Center(
@@ -27,9 +38,6 @@ class _LoginScreenState extends State<LoginScreen> {
           } else if (state is UnAuthState) {
             return Column(
               children: [
-                Container(
-                  child: Align(alignment: Alignment.center, child: Text("Войти"),),
-                ),
                 SizedBox(
                   height: 24,
                 ),
@@ -41,6 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       CupertinoTextField(
                         controller: nameController,
                         placeholder: 'Логин',
+                        style: AllTextStyles.LogInHintTextStyle,
                         decoration: BoxDecoration(borderRadius: BorderRadius.zero),
                         padding: EdgeInsets.only(left: 4, top: 16, bottom: 16),
                       ),
@@ -54,6 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.zero),
                         placeholder: 'Пароль',
+                        style: AllTextStyles.LogInHintTextStyle,
                         padding: EdgeInsets.only(left: 4, top: 16, bottom: 16),
                       ),
                     ],
@@ -65,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   width: 375,
                   child: CupertinoButton(
-                    color: Colors.blue,
+                    color: AllColors.ButtonColor,
                     onPressed: () {
                       print(state);
                       if (nameController.text.isNotEmpty &&
@@ -79,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Text(
                       'Войти',
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                      style: AllTextStyles.ButtonTextStyle,
                     ),
                   ),
                 )

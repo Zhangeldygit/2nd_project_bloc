@@ -1,3 +1,5 @@
+import 'package:example/Consts/color_consts.dart';
+import 'package:example/Consts/textStyle_consts.dart';
 import 'package:example/ProductsScreen/Product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,7 +13,7 @@ class ActionSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: AllColors.CardBackgroundColor,
       height: 204,
       width: MediaQuery.of(context).size.width,
       child: Padding(
@@ -29,13 +31,14 @@ class ActionSheet extends StatelessWidget {
                   SizedBox(height: 16,),
                   Text(
                     product.hintTitle,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: AllTextStyles.AppBarTextStyle,
                   ),
                   SizedBox(height: 24,),
                   Container(
                     width: MediaQuery.of(context).size.width - 60,
                     child: Text(
                       product.hintDescription,
+                      style: AllTextStyles.BottomSheetDescriptionTextStyle,
                     ),
                   )
                 ],
@@ -45,7 +48,7 @@ class ActionSheet extends StatelessWidget {
                 width: 24,
                 height: 24,
                 decoration: BoxDecoration(
-                  color: Color(0xFFEDEFF6),
+                  color: AllColors.QuestionBackgroundColor,
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(8.0),
                       topRight: Radius.circular(8.0)),
@@ -57,7 +60,7 @@ class ActionSheet extends StatelessWidget {
                       },
                       child: Icon(
                         Icons.close,
-                        color: Color(0xFF172853),
+                        color: AllColors.BottomNavBarSelectedItemColor,
                         size: 18,
                       ),
                     )

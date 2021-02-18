@@ -1,5 +1,6 @@
 import 'package:example/CategoryScreen/Category_model.dart';
 import 'package:example/CategoryScreen/category_bloc/category_bloc.dart';
+import 'package:example/Consts/textStyle_consts.dart';
 import 'package:example/LoginScreen/injections.dart';
 import 'package:example/ProductsScreen/Product_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,7 +44,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     child: Text(
                       widget.category.name,
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: AllTextStyles.AppBarTextStyle,
                     )),
               ],
             ),

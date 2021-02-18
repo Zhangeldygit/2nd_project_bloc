@@ -1,4 +1,6 @@
 // import 'package:bloc/bloc.dart';
+import 'package:example/Consts/color_consts.dart';
+import 'package:example/Consts/textStyle_consts.dart';
 import 'package:example/LoginScreen/LoginScreen.dart';
 import 'package:example/LoginScreen/bloc/auth_bloc.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,9 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserScreen extends StatefulWidget {
-  const UserScreen({
-    Key key,
-  }) : super(key: key);
+
+  UserScreen({Key key,}) : super(key: key);
 
   @override
   _UserScreenState createState() => _UserScreenState();
@@ -20,23 +21,28 @@ class _UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: Color(0xffE5E5E5),
-      navigationBar: CupertinoNavigationBar(
-        middle: Text('User'),
-      ),
       child: Column(
         children: [
+          AppBar(
+            backgroundColor: AllColors.CardBackgroundColor,
+            title: Center(
+              child: Text('admin@inzgiba.me',
+                  style: AllTextStyles.AppBarTextStyle),
+            ),
+          ),
           SizedBox(
-            height: 80,
+            height: 20,
           ),
           Container(
-            color: Color(0xffFFFFFF),
+            color: AllColors.CardBackgroundColor,
             padding: EdgeInsets.all(16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Уведомления'),
+                Text('Уведомления',
+                    style: AllTextStyles.NotificationTextStyle),
                 CupertinoSwitch(
+                    activeColor: AllColors.ButtonColor,
                     value: isSwitched,
                     onChanged: (value) {
                       setState(() {
@@ -47,12 +53,12 @@ class _UserScreenState extends State<UserScreen> {
             ),
           ),
           Divider(
-            color: Color(0xffEDF2FF),
+            color: AllColors.ScreenBackgroundColor,
             height: 1,
           ),
           Container(
             padding: EdgeInsets.only(top: 8, bottom: 8),
-            color: Color(0xffFFFFFF),
+            color: AllColors.CardBackgroundColor,
             child: Align(
               alignment: Alignment.centerLeft,
               child: CupertinoButton(
@@ -62,13 +68,14 @@ class _UserScreenState extends State<UserScreen> {
                   Navigator.push(
                     context,
                     CupertinoPageRoute(
-                      builder: (BuildContext context) => LoginScreen(),
+                      builder: (BuildContext context) =>
+                          LoginScreen(),
                     ),
                   );
                 },
                 child: Text(
                   'Выйти',
-                  style: TextStyle(color: Colors.red),
+                  style: AllTextStyles.LogOutTextStyle,
                 ),
               ),
             ),

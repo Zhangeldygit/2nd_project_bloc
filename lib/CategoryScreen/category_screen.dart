@@ -1,5 +1,7 @@
 import 'package:example/CategoryScreen/Category_card.dart';
 import 'package:example/CategoryScreen/category_bloc/category_bloc.dart';
+import 'package:example/Consts/color_consts.dart';
+import 'package:example/Consts/textStyle_consts.dart';
 import 'package:example/ProductsScreen/Product_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,7 +61,7 @@ class _CategoryScreenState extends State<CategoryScreen>
                           },
                           child: Text(
                             'Отменить',
-                            style: TextStyle(color: CupertinoColors.activeBlue, decoration: TextDecoration.underline),
+                            style: AllTextStyles.CancelTextStyle,
 
                           ),
                         ),
@@ -85,7 +87,7 @@ class _CategoryScreenState extends State<CategoryScreen>
                                 borderRadius: BorderRadius.circular(8)),
                             suffixMode: OverlayVisibilityMode.editing,
                             suffix: GestureDetector(
-                              child: Icon(CupertinoIcons.clear),
+                              child: Icon(CupertinoIcons.clear, color: AllColors.BottomNavBarItemColor),
                               onTap: () {
                                 _searchController.clear();
                                 _focusNode.unfocus();
@@ -94,7 +96,8 @@ class _CategoryScreenState extends State<CategoryScreen>
                             ),
                             padding: EdgeInsets.all(8),
                             placeholder: 'Найти вещь',
-                            prefix: Icon(CupertinoIcons.search),
+                            style: AllTextStyles.AppBarTextStyle,
+                            prefix: Icon(CupertinoIcons.search, color: AllColors.BottomNavBarItemColor),
                           ),
                         ),
                       ),

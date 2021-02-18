@@ -111,7 +111,7 @@ class _CartScreenState extends State<CartScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Общая сумма $sum',
+                            'Общая сумма $sum тг',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           Text('$totalCount вещи')
@@ -123,7 +123,7 @@ class _CartScreenState extends State<CartScreen> {
                       child: CupertinoButton(
                         color: Colors.blue,
                         onPressed: () {
-                          sum > 0 ? cartBloc.add(ConfirmCart()) : null;
+                          sum > 0 ? cartBloc.add(ConfirmCart()) : Offstage();
                         },
                         child: Text(
                           'Оформить',

@@ -15,11 +15,8 @@ class RemoveProduct extends CartEvent {
   RemoveProduct(this.product);
 }
 
-class InitCart extends CartEvent {
+class InitCart extends CartEvent {}
 
-}
-
-class ClearCart extends CartEvent {
-}
+class ClearCart extends CartEvent {}
 
 class ConfirmCart extends CartEvent{}
