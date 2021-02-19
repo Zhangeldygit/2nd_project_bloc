@@ -21,15 +21,14 @@ class _UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
+      backgroundColor: AllColors.ScreenBackgroundColor,
+      navigationBar: CupertinoNavigationBar(
+        backgroundColor: AllColors.CardBackgroundColor,
+        middle: Text('admin@inzgiba.me',
+            style: AllTextStyles.AppBarTextStyle),
+      ),
       child: Column(
         children: [
-          AppBar(
-            backgroundColor: AllColors.CardBackgroundColor,
-            title: Center(
-              child: Text('admin@inzgiba.me',
-                  style: AllTextStyles.AppBarTextStyle),
-            ),
-          ),
           SizedBox(
             height: 20,
           ),

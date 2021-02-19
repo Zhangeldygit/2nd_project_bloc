@@ -41,40 +41,40 @@ class _MainScreenState extends State<MainScreen> {
           create: (_) => getIt<CategoryBloc>()..add(LoadCategories()),
         ),
       ],
-      child: SafeArea(
-        child: CupertinoTabScaffold(
-          backgroundColor: Color(0xffE5E5E5),
-          tabBar: CupertinoTabBar(
-            activeColor: CupertinoColors.black,
-            inactiveColor: CupertinoColors.inactiveGray,
-            backgroundColor: Colors.white,
-            items: [
-              BottomNavigationBarItem(
-                  activeIcon: SvgPicture.asset('lib/assets/icon.svg', color: CupertinoColors.black,),
-                  icon: SvgPicture.asset('lib/assets/icon.svg'),
-                  label: 'Прачечная'),
-              BottomNavigationBarItem(
-                  activeIcon: SvgPicture.asset('lib/assets/avatar.svg', color: CupertinoColors.black,),
-                  icon: SvgPicture.asset('lib/assets/avatar.svg'),
-                  label: 'Профиль'),
-              BottomNavigationBarItem(
-                  activeIcon: SvgPicture.asset('lib/assets/cart.svg', color: CupertinoColors.black,),
-                  icon: SvgPicture.asset('lib/assets/cart.svg'),
-                  label: 'Корзина'),
-            ],
-            currentIndex: _selectedIndex,
-            onTap: _onItemTapped,
-          ),
-          tabBuilder: (context, index) {
-            return Scaffold(
-              body: CupertinoTabView(
+      child: CupertinoTabScaffold(
+        backgroundColor: Color(0xffE5E5E5),
+        tabBar: CupertinoTabBar(
+          activeColor: CupertinoColors.black,
+          inactiveColor: CupertinoColors.inactiveGray,
+          backgroundColor: Colors.white,
+          items: [
+            BottomNavigationBarItem(
+                activeIcon: SvgPicture.asset('lib/assets/icon.svg', color: CupertinoColors.black,),
+                icon: SvgPicture.asset('lib/assets/icon.svg'),
+                label: 'Прачечная'),
+            BottomNavigationBarItem(
+                activeIcon: SvgPicture.asset('lib/assets/avatar.svg', color: CupertinoColors.black,),
+                icon: SvgPicture.asset('lib/assets/avatar.svg'),
+                label: 'Профиль'),
+            BottomNavigationBarItem(
+                activeIcon: SvgPicture.asset('lib/assets/cart.svg', color: CupertinoColors.black,),
+                icon: SvgPicture.asset('lib/assets/cart.svg'),
+                label: 'Корзина'),
+          ],
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+        ),
+        tabBuilder: (context, index) {
+          return Scaffold(
+            body: SafeArea(
+              child: CupertinoTabView(
                 builder: (context) {
                   return _widgetOptions.elementAt(_selectedIndex);
                 },
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
