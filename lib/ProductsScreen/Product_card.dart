@@ -76,11 +76,10 @@ class _ProductCardState extends State<ProductCard> {
                         child: widget.callBack != null ?  InkWell(
                           borderRadius: BorderRadius.circular(8),
                           onTap: () {
-                            showModalBottomSheet(
-                                barrierColor: Colors.black.withOpacity(0.5),
+                            showCupertinoModalPopup(
                                 context: context,
                                 builder: (BuildContext context) {
-                                  return ActionSheet(widget.product);
+                                  return Container(child: ActionSheet(widget.product));
                                 }
                             );
                           },
@@ -183,11 +182,10 @@ class _ProductCardState extends State<ProductCard> {
                     ? InkWell(
                   borderRadius: BorderRadius.circular(8),
                   onTap: () {
-                    showModalBottomSheet(
-                        barrierColor: Colors.black.withOpacity(0.5),
+                    showCupertinoModalPopup(
                         context: context,
                         builder: (BuildContext context) {
-                          return ActionSheet(widget.product);
+                          return Container(child: ActionSheet(widget.product));
                         }
                     );
                   },

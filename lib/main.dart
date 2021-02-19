@@ -5,8 +5,6 @@ import 'package:example/LoginScreen/injections.dart';
 import 'package:example/MainScreen.dart';
 import 'package:example/ProductsScreen/Product_model.dart';
 import 'package:flutter/cupertino.dart';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -39,7 +37,7 @@ class MyApp extends StatelessWidget {
 
         ],
         child: BlocBuilder<AuthBloc, AuthState>(
-          builder: (c, s) => MaterialApp(
+          builder: (c, s) => CupertinoApp(
             debugShowCheckedModeBanner: false,
             home: s is LoginState ? MainScreen() : LoginScreen(),
           ),
