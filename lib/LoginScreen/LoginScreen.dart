@@ -19,15 +19,15 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
+      appBar: CupertinoNavigationBar(
+        // centerTitle: true,
+        middle: Text(
           'Войти',
           style: AllTextStyles.AppBarTextStyle
         ),
         brightness: Brightness.light,
         backgroundColor: AllColors.CardBackgroundColor,
-         elevation: 0,
+         // elevation: 0,
       ),
       body: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
