@@ -1,6 +1,6 @@
 // import 'package:bloc/bloc.dart';
 import 'package:example/Consts/color_consts.dart';
-import 'package:example/Consts/textStyle_consts.dart';
+import 'package:example/Consts/text_style_consts.dart';
 import 'package:example/LoginScreen/LoginScreen.dart';
 import 'package:example/LoginScreen/bloc/auth_bloc.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,7 +21,7 @@ class _UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: AllColors.ScreenBackgroundColor,
+      backgroundColor: AllColors.BottomNavBarSelectedBackgroundColor,
       navigationBar: CupertinoNavigationBar(
         backgroundColor: AllColors.CardBackgroundColor,
         middle: Text('admin@inzgiba.me',

@@ -46,6 +46,7 @@ class AllTextStyles {
   static const TextStyle CategoryTitleTextStyle = TextStyle(
     color: AllColors.BottomNavBarSelectedItemColor,
     fontSize: 14,
+    height: 1.5,
     fontFamily: 'Museo Sans Cyrl',
     fontWeight: FontWeight.bold
   );
@@ -53,13 +54,21 @@ class AllTextStyles {
   static const TextStyle ProductTitleTextStyle = TextStyle(
       color: AllColors.BottomNavBarSelectedItemColor,
       fontSize: 14,
+      height: 1.29,
       fontFamily: 'Museo Sans Cyrl',
   );
 
   static const TextStyle QuestionTextStyle = TextStyle(
     color: AllColors.BottomNavBarItemColor,
-    fontSize: 16,
+    fontSize: 17,
     fontFamily: 'Museo Sans Cyrl',
+    fontWeight: FontWeight.bold
+  );
+
+  static const TextStyle CardHintTextStyle = TextStyle(
+      color: AllColors.BottomNavBarItemColor,
+      fontSize: 12,
+      fontFamily: 'Museo Sans Cyrl',
   );
 
   static const TextStyle Price_Day_TextStyle = TextStyle(

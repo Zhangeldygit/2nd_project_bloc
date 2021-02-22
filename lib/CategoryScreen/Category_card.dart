@@ -1,5 +1,5 @@
 import 'package:example/CategoryScreen/Category_model.dart';
-import 'package:example/Consts/textStyle_consts.dart';
+import 'package:example/Consts/text_style_consts.dart';
 import 'package:example/ProductsScreen/ProductsScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,38 +17,51 @@ class CategoryCard extends StatelessWidget {
           context,
           CupertinoPageRoute(
             maintainState: false,
-            builder: (context) =>
-                ProductsScreen(category: category),
+            builder: (context) => ProductsScreen(category: category),
           ),
         );
       },
-      child: Container(
-        width: 343,
-        height: 84,
-        margin: EdgeInsets.only(left: 16, right: 16, top: 10),
-        decoration: BoxDecoration(color: CupertinoColors.white, borderRadius: BorderRadius.circular(8),),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: EdgeInsets.all(16),
-              child: Column(
-                children: [Text(category.name, style: AllTextStyles.CategoryTitleTextStyle)],
-              ),
-            ),
-            Container(
-              width: 100,
-              height: double.maxFinite,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(3),
-                child: Image(
-                  image:
-                      NetworkImage("https://api.doover.tech${category.picture}"),
-                  fit: BoxFit.fill,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Container(
+          height: 84,
+          decoration: BoxDecoration(color: CupertinoColors.white),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(16, 16, 16, 4),
+                      child: Text(category.name.toUpperCase(),
+                          style: AllTextStyles.CategoryTitleTextStyle),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(16, 4, 16, 10),
+                      child: Text(
+                        category.description,
+                        style: AllTextStyles.CardHintTextStyle,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
+                    )
+                  ],
                 ),
               ),
-            ),
-          ],
+              Container(
+                width: (MediaQuery.of(context).size.width - 32) *
+                    (343 - 229) /
+                    343,
+                child: Image(
+                  image: NetworkImage(
+                      "https://api.doover.tech${category.picture}"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

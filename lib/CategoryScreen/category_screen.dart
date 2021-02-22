@@ -1,7 +1,7 @@
 import 'package:example/CategoryScreen/Category_card.dart';
 import 'package:example/CategoryScreen/category_bloc/category_bloc.dart';
 import 'package:example/Consts/color_consts.dart';
-import 'package:example/Consts/textStyle_consts.dart';
+import 'package:example/Consts/text_style_consts.dart';
 import 'package:example/ProductsScreen/Product_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -117,10 +117,10 @@ class _CategoryScreenState extends State<CategoryScreen>
             } else if (state is CategorySuccess) {
               return Expanded(
                 child: ListView.separated(
-                  padding: EdgeInsets.only(top: 10, bottom: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                   separatorBuilder: (BuildContext context, int index) {
                     return SizedBox(
-                      height: 10,
+                      height: 16,
                     );
                   },
                   itemCount: state.categories.length,
@@ -135,7 +135,7 @@ class _CategoryScreenState extends State<CategoryScreen>
                   padding: EdgeInsets.only(top: 10, bottom: 20),
                   separatorBuilder: (BuildContext context, int index) {
                     return SizedBox(
-                      height: 10,
+                      height: 5,
                     );
                   },
                   itemCount: state.products.length,

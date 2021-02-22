@@ -1,5 +1,5 @@
 import 'package:example/Consts/color_consts.dart';
-import 'package:example/Consts/textStyle_consts.dart';
+import 'package:example/Consts/text_style_consts.dart';
 import 'package:example/ProductsScreen/Product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';

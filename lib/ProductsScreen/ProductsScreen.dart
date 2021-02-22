@@ -1,6 +1,6 @@
 import 'package:example/CategoryScreen/Category_model.dart';
 import 'package:example/CategoryScreen/category_bloc/category_bloc.dart';
-import 'package:example/Consts/textStyle_consts.dart';
+import 'package:example/Consts/text_style_consts.dart';
 import 'package:example/LoginScreen/injections.dart';
 import 'package:example/ProductsScreen/Product_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -58,10 +58,10 @@ class _ProductsScreenState extends State<ProductsScreen> {
               } else if (state is ProductsSuccess) {
                 return Expanded(
                   child: ListView.separated(
-                    padding: EdgeInsets.only(top: 10, bottom: 20),
+                    padding: EdgeInsets.only(top: 8, bottom: 8),
                     separatorBuilder: (BuildContext context, int index) {
                       return SizedBox(
-                        height: 10,
+                        height: 5,
                       );
                     },
                     itemCount: state.products.length,

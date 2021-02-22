@@ -4,11 +4,12 @@ import 'package:example/CartScreen/CartScreen.dart';
 import 'package:example/CategoryScreen/category_bloc/category_bloc.dart';
 import 'package:example/CategoryScreen/category_screen.dart';
 import 'package:example/LoginScreen/injections.dart';
+import 'package:example/NavBarItem.dart';
 import 'package:example/UserScreen/UserScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 
 class MainScreen extends StatefulWidget {
   @override
@@ -42,24 +43,25 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ],
       child: CupertinoTabScaffold(
-        backgroundColor: Color(0xffE5E5E5),
+        backgroundColor: Colors.black,
         tabBar: CupertinoTabBar(
+          border: Border(top: BorderSide.none),
           activeColor: CupertinoColors.black,
           inactiveColor: CupertinoColors.inactiveGray,
           backgroundColor: Colors.white,
           items: [
             BottomNavigationBarItem(
-                activeIcon: SvgPicture.asset('lib/assets/icon.svg', color: CupertinoColors.black,),
-                icon: SvgPicture.asset('lib/assets/icon.svg'),
-                label: 'Прачечная'),
+                activeIcon: NavBarIcon(active: true, title: 'Прачечная', IconName: 'lib/assets/icon.svg'),
+                icon: NavBarIcon(active: false, title: 'Прачечная', IconName: 'lib/assets/icon.svg'),
+                ),
             BottomNavigationBarItem(
-                activeIcon: SvgPicture.asset('lib/assets/avatar.svg', color: CupertinoColors.black,),
-                icon: SvgPicture.asset('lib/assets/avatar.svg'),
-                label: 'Профиль'),
+              activeIcon: NavBarIcon(active: true, title: 'Профиль', IconName: 'lib/assets/avatar.svg'),
+              icon: NavBarIcon(active: false, title: 'Профиль', IconName: 'lib/assets/avatar.svg'),
+                ),
             BottomNavigationBarItem(
-                activeIcon: SvgPicture.asset('lib/assets/cart.svg', color: CupertinoColors.black,),
-                icon: SvgPicture.asset('lib/assets/cart.svg'),
-                label: 'Корзина'),
+                activeIcon: NavBarIcon(active: true, title: 'Корзина', IconName: 'lib/assets/cart.svg'),
+                icon: NavBarIcon(active: false, title: 'Корзина', IconName: 'lib/assets/cart.svg'),
+                ),
           ],
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
