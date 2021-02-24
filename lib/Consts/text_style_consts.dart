@@ -10,6 +10,13 @@ class AllTextStyles {
     fontWeight: FontWeight.bold
   );
 
+  static const TextStyle SumTextStyle = TextStyle(
+      color: AllColors.BottomNavBarSelectedItemColor,
+      fontSize: 16,
+      fontFamily: 'Museo Sans Cyrl',
+      fontWeight: FontWeight.bold
+  );
+
   static const TextStyle LogInHintTextStyle = TextStyle(
     color: AllColors.BottomNavBarSelectedItemColor,
     fontSize: 16,

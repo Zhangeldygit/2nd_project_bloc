@@ -1,5 +1,7 @@
 import 'package:example/CartScreen/cart_bloc.dart';
 import 'package:example/CategoryScreen/category_bloc/category_bloc.dart';
+import 'package:example/Consts/color_consts.dart';
+import 'package:example/Consts/text_style_consts.dart';
 import 'package:example/ProductsScreen/Product_card.dart';
 import 'package:example/ProductsScreen/Product_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -101,39 +103,44 @@ class _CartScreenState extends State<CartScreen> {
                 );
               }),
               Container(
-                padding: EdgeInsets.all(16),
-                color: Colors.white,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
+                height: 126,
+                width: MediaQuery.of(context).size.width,
+                color: AllColors.CardBackgroundColor,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Column(
+                    children: [
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             'Общая сумма $sum тг',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: AllTextStyles.SumTextStyle,
                           ),
                           Text('$totalCount вещи')
                         ],
                       ),
-                    ),
-                    Container(
-                      width: 375,
-                      child: CupertinoButton(
-                        color: Colors.blue,
-                        onPressed: () {
-                          sum > 0 ? cartBloc.add(ConfirmCart()) : Offstage();
-                        },
-                        child: Text(
-                          'Оформить',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Container(
+                        width: 375,
+                        height: 43,
+                        child: CupertinoButton(
+                          padding: EdgeInsets.all(1),
+                          borderRadius: BorderRadius.circular(6),
+                          color: AllColors.ButtonColor,
+                          onPressed: () {
+                            sum > 0 ? cartBloc.add(ConfirmCart()) : Offstage();
+                          },
+                          child: Text(
+                            'Оформить',
+                            style: AllTextStyles.ButtonTextStyle,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               )
             ],

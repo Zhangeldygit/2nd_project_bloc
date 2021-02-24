@@ -225,9 +225,9 @@ class _ProductCardState extends State<ProductCard> {
                         ),
                         child: Center(
                           child: Icon(
-                            CupertinoIcons.clear,
+                            Icons.close,
                             color: AllColors.BottomNavBarItemColor,
-                            size: 18,
+                            size: 17,
                           ),
                         ),
                       ),
