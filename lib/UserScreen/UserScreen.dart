@@ -20,67 +20,64 @@ class _UserScreenState extends State<UserScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      backgroundColor: AllColors.BottomNavBarSelectedBackgroundColor,
-      navigationBar: CupertinoNavigationBar(
-        backgroundColor: AllColors.CardBackgroundColor,
-        middle: Text('admin@inzgiba.me',
-            style: AllTextStyles.AppBarTextStyle),
-      ),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 20,
+    return Column(
+      children: [
+        CupertinoNavigationBar(
+          backgroundColor: AllColors.CardBackgroundColor,
+          middle: Text('admin@inzgiba.me',
+              style: AllTextStyles.AppBarTextStyle),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Container(
+          color: AllColors.CardBackgroundColor,
+          padding: EdgeInsets.all(16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Уведомления',
+                  style: AllTextStyles.NotificationTextStyle),
+              CupertinoSwitch(
+                  activeColor: AllColors.ButtonColor,
+                  value: isSwitched,
+                  onChanged: (value) {
+                    setState(() {
+                      isSwitched = value;
+                    });
+                  })
+            ],
           ),
-          Container(
-            color: AllColors.CardBackgroundColor,
-            padding: EdgeInsets.all(16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Уведомления',
-                    style: AllTextStyles.NotificationTextStyle),
-                CupertinoSwitch(
-                    activeColor: AllColors.ButtonColor,
-                    value: isSwitched,
-                    onChanged: (value) {
-                      setState(() {
-                        isSwitched = value;
-                      });
-                    })
-              ],
-            ),
-          ),
-          Divider(
-            color: AllColors.ScreenBackgroundColor,
-            height: 1,
-          ),
-          Container(
-            padding: EdgeInsets.only(top: 8, bottom: 8),
-            color: AllColors.CardBackgroundColor,
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: CupertinoButton(
-                onPressed: () {
-                  context.read<AuthBloc>().add(LogOutEvent());
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (BuildContext context) =>
-                          LoginScreen(),
-                    ),
-                  );
-                },
-                child: Text(
-                  'Выйти',
-                  style: AllTextStyles.LogOutTextStyle,
-                ),
+        ),
+        Divider(
+          color: AllColors.ScreenBackgroundColor,
+          height: 1,
+        ),
+        Container(
+          padding: EdgeInsets.only(top: 8, bottom: 8),
+          color: AllColors.CardBackgroundColor,
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: CupertinoButton(
+              onPressed: () {
+                context.read<AuthBloc>().add(LogOutEvent());
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (BuildContext context) =>
+                        LoginScreen(),
+                  ),
+                );
+              },
+              child: Text(
+                'Выйти',
+                style: AllTextStyles.LogOutTextStyle,
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

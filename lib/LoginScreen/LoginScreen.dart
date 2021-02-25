@@ -74,7 +74,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Container(
                   width: 375,
+                  height: 43,
                   child: CupertinoButton(
+                    padding: EdgeInsets.all(1),
                     color: AllColors.ButtonColor,
                     onPressed: () {
                       print(state);

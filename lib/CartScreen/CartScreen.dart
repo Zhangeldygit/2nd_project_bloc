@@ -18,7 +18,7 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  double sum = 0;
+  int sum = 0;
   int totalCount;
   CartBloc cartBloc;
 
@@ -41,7 +41,7 @@ class _CartScreenState extends State<CartScreen> {
   void _setValues(List<Product> state) {
     sum = state
         .map((e) => e.count * e.price)
-        .reduce((value, element) => value + element);
+        .reduce((value, element) => value + element).toInt();
 
     totalCount =
         state.map((e) => e.count).reduce((value, element) => value + element);
@@ -52,14 +52,14 @@ class _CartScreenState extends State<CartScreen> {
     return BlocBuilder<CartBloc, List<Product>>(
       builder: (context, state) {
         if (state.isEmpty) {
-          return Container();
+          return Offstage();
         } else {
           return Column(
             children: [
               Container(
                 width: double.maxFinite,
                 height: 50,
-                color: CupertinoColors.white,
+                color: AllColors.CardBackgroundColor,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -67,7 +67,7 @@ class _CartScreenState extends State<CartScreen> {
                       child: Text(
                         'Корзина',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: AllTextStyles.AppBarTextStyle,
                       ),
                       padding: EdgeInsets.only(left: 170),
                     ),
@@ -76,7 +76,7 @@ class _CartScreenState extends State<CartScreen> {
                         padding: const EdgeInsets.all(8),
                         child: Text(
                           'Очистить',
-                          style: TextStyle(color: Colors.red),
+                          style: AllTextStyles.LogOutTextStyle
                         ),
                       ),
                       onTap: () {
