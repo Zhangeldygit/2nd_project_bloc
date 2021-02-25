@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:example/CategoryScreen/Category_model.dart';
+import 'package:example/category_screen/CategoryModel.dart';
 
 class CategoryDataSource {
   final Dio dio;

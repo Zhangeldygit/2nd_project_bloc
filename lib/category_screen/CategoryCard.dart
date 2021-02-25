@@ -1,6 +1,6 @@
-import 'package:example/CategoryScreen/Category_model.dart';
+import 'package:example/category_screen/CategoryModel.dart';
 import 'package:example/Consts/text_style_consts.dart';
-import 'package:example/ProductsScreen/ProductsScreen.dart';
+import 'package:example/products_screen/ProductsScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

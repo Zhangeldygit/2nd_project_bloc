@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:example/ProductsScreen/Product_model.dart';
+import 'package:example/products_screen/Product_model.dart';
 
 class ProductsDataSource {
   final Dio dio;

@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:example/CartScreen/cart_bloc.dart';
-import 'package:example/CategoryScreen/CategoryDataSource.dart';
-import 'package:example/CategoryScreen/category_bloc/category_bloc.dart';
-import 'package:example/LoginScreen/AppInterceptors.dart';
-import 'package:example/LoginScreen/bloc/auth_bloc.dart';
-import 'package:example/LoginScreen/datasource.dart';
-import 'package:example/ProductsScreen/ProductsDataSource.dart';
+import 'package:example/cart_screen/cart_bloc/cart_bloc.dart';
+import 'package:example/category_screen/CategoryDataSource.dart';
+import 'package:example/category_screen/category_bloc/category_bloc.dart';
+import 'package:example/login_screen/AppInterceptors.dart';
+import 'package:example/login_screen/DataSource.dart';
+import 'package:example/login_screen/bloc/auth_bloc.dart';
+import 'package:example/products_screen/ProductsDataSource.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 

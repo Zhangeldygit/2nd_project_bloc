@@ -12,6 +12,6 @@ class AllColors {
   static const Color LogOut_Clear_Color = Color(0xffFF5050);
   static const Color ScaffoldBackgroundColor = Color(0xffF8F8FB);
   static const Color CardBackgroundColor = Color(0xffFFFFFF);
-  static Color ModalBackgroundColor = Color(0xff000000).withOpacity(0.8);
+  static Color mBackgroundColor = Color(0xff000000).withOpacity(0.8);
 
 }

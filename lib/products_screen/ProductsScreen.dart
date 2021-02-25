@@ -1,8 +1,8 @@
-import 'package:example/CategoryScreen/Category_model.dart';
-import 'package:example/CategoryScreen/category_bloc/category_bloc.dart';
+import 'package:example/category_screen/CategoryModel.dart';
+import 'package:example/category_screen/category_bloc/category_bloc.dart';
 import 'package:example/Consts/text_style_consts.dart';
-import 'package:example/LoginScreen/injections.dart';
-import 'package:example/ProductsScreen/Product_card.dart';
+import 'package:example/login_screen/injections.dart';
+import 'package:example/products_screen/Product_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

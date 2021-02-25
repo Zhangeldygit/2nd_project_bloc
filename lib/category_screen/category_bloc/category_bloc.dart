@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:example/CategoryScreen/CategoryDataSource.dart';
-import 'package:example/CategoryScreen/Category_model.dart';
-import 'package:example/ProductsScreen/Product_model.dart';
-import 'package:example/ProductsScreen/ProductsDataSource.dart';
+import 'package:example/category_screen/CategoryDataSource.dart';
+import 'package:example/category_screen/CategoryModel.dart';
+import 'package:example/products_screen/Product_model.dart';
+import 'package:example/products_screen/ProductsDataSource.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
 

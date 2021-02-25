@@ -1,8 +1,8 @@
 // import 'package:bloc/bloc.dart';
 import 'package:example/Consts/color_consts.dart';
 import 'package:example/Consts/text_style_consts.dart';
-import 'package:example/LoginScreen/LoginScreen.dart';
-import 'package:example/LoginScreen/bloc/auth_bloc.dart';
+import 'package:example/login_screen/LoginScreen.dart';
+import 'package:example/login_screen/bloc/auth_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

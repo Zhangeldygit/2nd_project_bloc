@@ -1,9 +1,9 @@
-import 'package:example/CartScreen/cart_bloc.dart';
-import 'package:example/LoginScreen/LoginScreen.dart';
-import 'package:example/LoginScreen/bloc/auth_bloc.dart';
-import 'package:example/LoginScreen/injections.dart';
+import 'package:example/cart_screen/cart_bloc/cart_bloc.dart';
+import 'package:example/login_screen/LoginScreen.dart';
+import 'package:example/login_screen/bloc/auth_bloc.dart';
+import 'package:example/login_screen/injections.dart';
 import 'package:example/MainScreen.dart';
-import 'package:example/ProductsScreen/Product_model.dart';
+import 'package:example/products_screen/Product_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
